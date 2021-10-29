@@ -17,7 +17,6 @@ while True:
     img = detector.findHands(img)
     lmList = detector.findPosition(img,draw=False)
     if len(lmList) != 0:
-        # print(lmList[4],lmList[8])
 
         Tx, Ty = lmList[4][1], lmList[4][2]
         Ix, Iy = lmList[8][1], lmList[8][2]
@@ -30,19 +29,19 @@ while True:
         M4TH=math.hypot(M4x-Tx, M4y-Ty)
         MI= math.hypot(Mx-Ix, My-Iy)
         MP=math.hypot(Mx-Px, My-Py)
-        print(MI)
+        # print(MI)
 
         if (INTH>=250):
-            print("L")
+            cv2.putText(img, "L", (320, 240), cv2.FONT_HERSHEY_TRIPLEX, 2, (255, 255, 255))
 
         if (INTH>=40 and INTH<=100 and MI>=100 and MI<=150):
-            print("C")
+            cv2.putText(img, "C", (320, 240), cv2.FONT_HERSHEY_TRIPLEX, 2, (255, 255, 255))
 
         if (M4TH>=0 and M4TH<=10):
-            print("B")
+            cv2.putText(img, "B", (320, 240), cv2.FONT_HERSHEY_TRIPLEX, 2, (255, 255, 255))
 
         if (MP>=50 and MP<=80):
-            print("A")
+            cv2.putText(img, "A", (320, 240), cv2.FONT_HERSHEY_TRIPLEX, 2, (255, 255, 255))
 
 
     cTime = time.time()
