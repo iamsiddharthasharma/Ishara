@@ -32,16 +32,16 @@ while True:
         # print(MI)
 
         if (INTH>=250):
-            cv2.putText(img, "L", (320, 240), cv2.FONT_HERSHEY_TRIPLEX, 2, (255, 255, 255))
+            cv2.putText(img, "L", (400, 450), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 255, 255))
 
         if (INTH>=40 and INTH<=100 and MI>=100 and MI<=150):
-            cv2.putText(img, "C", (320, 240), cv2.FONT_HERSHEY_TRIPLEX, 2, (255, 255, 255))
+            cv2.putText(img, "C", (400, 450), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 255, 255))
 
         if (M4TH>=0 and M4TH<=10):
-            cv2.putText(img, "B", (320, 240), cv2.FONT_HERSHEY_TRIPLEX, 2, (255, 255, 255))
+            cv2.putText(img, "B", (400, 450), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 255, 255))
 
         if (MP>=50 and MP<=80):
-            cv2.putText(img, "A", (320, 240), cv2.FONT_HERSHEY_TRIPLEX, 2, (255, 255, 255))
+            cv2.putText(img, "A", (400, 450), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 255, 255))
 
 
     cTime = time.time()
