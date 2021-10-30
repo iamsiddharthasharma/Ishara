@@ -11,11 +11,24 @@ cap.set(4, hCam)
 pTime=0
 detector = htm.handDetector(detectionCon=0.7)
 
+count=0
+word=[]
+pword='Null'
+
+def call(let):
+    global pword
+    if (pword!=let):
+        word.append(let)
+        pword=let
 
 while True:
     success, img = cap.read()
     img = detector.findHands(img)
     lmList = detector.findPosition(img,draw=False)
+
+    # cv2.putText(img,word, (400, 450), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 255, 255))
+    print(*word)
+
     if len(lmList) != 0:
 
         Tx, Ty = lmList[4][1], lmList[4][2]
@@ -32,16 +45,32 @@ while True:
         # print(MI)
 
         if (INTH>=250):
-            cv2.putText(img, "L", (400, 450), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 255, 255))
+            count=count+1
+            if count>15:
+                let="L"
+                count=0
+                call(let)
 
         if (INTH>=40 and INTH<=100 and MI>=100 and MI<=150):
-            cv2.putText(img, "C", (400, 450), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 255, 255))
+            count = count + 1
+            if count > 15:
+                let = "C"
+                count = 0
+                call(let)
 
         if (M4TH>=0 and M4TH<=10):
-            cv2.putText(img, "B", (400, 450), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 255, 255))
+            count = count + 1
+            if count > 15:
+                let = "B"
+                count = 0
+                call(let)
 
         if (MP>=50 and MP<=80):
-            cv2.putText(img, "A", (400, 450), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 255, 255))
+            count = count + 1
+            if count > 15:
+                let = "A"
+                count = 0
+                call(let)
 
 
     cTime = time.time()
