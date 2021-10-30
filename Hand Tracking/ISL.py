@@ -29,8 +29,10 @@ while True:
     img = detector.findHands(img)
     lmList = detector.findPosition(img, draw=False)
 
+    cv2.line(img, (0,400),(640,400),(0,0,0),3)
+
     pw = str.join(word)
-    cv2.putText(img, pw, (400, 450), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 255, 255))
+    cv2.putText(img, pw, (50, 450), cv2.FONT_HERSHEY_TRIPLEX, 1, (255, 255, 255))
 
     if len(lmList) != 0:
 
@@ -40,12 +42,22 @@ while True:
         M4x, M4y = lmList[9][1], lmList[9][2]
         Mx, My = lmList[12][1], lmList[12][2]
         Px, Py = lmList[0][1], lmList[0][2]
+        I3x, I3y = lmList[6][1], lmList[6][2]
 
         INTH = math.hypot(Ix - Tx, Iy - Ty)
         M4TH = math.hypot(M4x - Tx, M4y - Ty)
         MI = math.hypot(Mx - Ix, My - Iy)
         MP = math.hypot(Mx - Px, My - Py)
-        # print(MI)
+        I3TH = math.hypot(I3x - Tx, I3y - Ty)
+        print(I3TH)
+
+        if (I3TH>=150 and I3TH<=200):  #backspace
+            count = count + 1
+            if (len(word)!=0):
+                if count > 25:
+                    word.pop()
+                    pword= " "
+                    count=0
 
         if (INTH >= 250):
             count = count + 1
